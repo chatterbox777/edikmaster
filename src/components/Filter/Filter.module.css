@@ -1,0 +1,6 @@
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  width: 500px;
+}

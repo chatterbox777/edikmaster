@@ -1,0 +1,10 @@
+select {
+  width: 165px;
+}
+.select {
+  display: flex;
+  flex-direction: column;
+}
+.select label {
+  text-align: left;
+}

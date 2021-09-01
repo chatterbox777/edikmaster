@@ -6,6 +6,7 @@ export default function Navbar() {
   return (
     <div className={classes.main}>
       <Link to="/">Main</Link>
+      <Link to="/carsFilter">CarsFilter</Link>
     </div>
   );
 }
