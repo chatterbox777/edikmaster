@@ -1,17 +1,18 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { asyncSetCarsListAction } from "../../store/asyncActions";
 import classes from "./CarsFilter.module.css";
+
 import Cars from "../Cars/Cars";
 import Filter from "../Filter/Filter";
-import { useEffect } from "react";
-import { getCarsListForFilter } from "../../Api/getCarsListForFilter";
-import { useState } from "react";
+
 export default function CarsFilter() {
-  const [carsList, setCarsList] = useState([]);
+  const { carsList } = useSelector((state) => state.cars);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    (async function fetchData() {
-      let carsData = await getCarsListForFilter();
-      setCarsList(carsData);
-    })();
+    dispatch(asyncSetCarsListAction());
   }, []);
   return (
     <div className={classes.flex}>

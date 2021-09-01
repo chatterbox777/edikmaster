@@ -1,0 +1,2 @@
+export const SET_CARS_LIST = "CARS.SET_CARS_LIST";
+export const SET_CHOSEN_MAKER = "CARS.SET_CHOSEN_MAKER";
