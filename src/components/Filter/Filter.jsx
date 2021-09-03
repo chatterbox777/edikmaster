@@ -13,14 +13,14 @@ export default function Filter({ carsList, countries }) {
     { labelId: "country_selector", labelText: "Выберите страну авто" },
   ]);
   const [inputs, setInputs] = useState([
-    { placeHolder: "год выпуска" },
-    { placeHolder: "vin автомобиля" },
+    { id: "year", placeHolder: "год выпуска" },
+    { id: "vin", placeHolder: "vin автомобиля" },
   ]);
   useEffect(() => {}, [carsList, countries]);
   return (
     <div className={classes.filter}>
       {inputs.map((input) => (
-        <Input placeHolder={input.placeHolder} />
+        <Input placeHolder={input.placeHolder} id={input.id} />
       ))}
       {selectors.map((selector) => (
         <Select

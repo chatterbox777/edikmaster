@@ -11,17 +11,39 @@ export default function Select({ labelId, labelText, carsList, countries }) {
   const { chosenMaker } = useSelector((state) => state.cars);
 
   function handleSelect(e) {
-    dispatch(
-      carsActionCreators.setChosenMaker({ chosenMaker: e.target.value })
-    );
+    switch (labelId) {
+      case "maker_selector":
+        dispatch(
+          carsActionCreators.setChosenMaker({ chosenMaker: e.target.value })
+        );
+        break;
+
+      case "model_selector":
+        dispatch(
+          carsActionCreators.setChosenModel({ chosenModel: e.target.value })
+        );
+        break;
+
+      case "country_selector":
+        let value =
+          countries.find((el) => el.name === e.target.value)?.code ?? "";
+        dispatch(carsActionCreators.setChosenCountry({ chosenCountry: value }));
+        break;
+
+      default:
+        break;
+    }
   }
 
   useEffect(() => {
     switch (labelId) {
       case "maker_selector":
-        let arrOfBrand = carsList.map((el) => el.brand);
-        let resultArr = arrOfBrand.sort((a, b) => a.localeCompare(b));
-        setOptions(resultArr);
+        if (carsList) {
+          let arrOfBrand = carsList.map((el) => el.brand);
+          let resultArr = arrOfBrand.sort((a, b) => a.localeCompare(b));
+          setOptions(resultArr);
+        }
+
         break;
       case "model_selector":
         if (chosenMaker) {
@@ -32,7 +54,13 @@ export default function Select({ labelId, labelText, carsList, countries }) {
         }
 
         break;
+
       case "country_selector":
+        if (countries) {
+          let resultArrCountries = countries.map((el) => el.name);
+          setOptions(resultArrCountries);
+        }
+
         break;
 
       default:

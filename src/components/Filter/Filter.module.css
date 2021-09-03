@@ -3,4 +3,5 @@
   flex-wrap: wrap;
   align-items: flex-end;
   width: 500px;
+  max-height: 80px;
 }
