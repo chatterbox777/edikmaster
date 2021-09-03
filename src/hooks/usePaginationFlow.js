@@ -3,8 +3,7 @@ import * as axios from "axios";
 
 export const usePaginationFlow = () => {
   debugger;
-  const [limit, setLimit] = useState(20);
-  const [users, setUsers] = useState([]);
+  const [limit] = useState(20);
   const [loading, setLoading] = useState(false);
   const [filterUsers, setFilterUsers] = useState([]);
   const [pagesArr, setPagesArr] = useState([]);
@@ -43,7 +42,6 @@ export const usePaginationFlow = () => {
       let usersData = await axios.get("data.json");
       result = usersData.data;
       totalPagesCount = getTotalPagesCount(result.length);
-      setUsers(result);
       setFilterUsers(filterUsersSize(result));
       createPagesArr(totalPagesCount);
     })();

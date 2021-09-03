@@ -66,7 +66,7 @@ export default function Select({ labelId, labelText, carsList, countries }) {
       default:
         break;
     }
-  }, [carsList, countries, chosenMaker]);
+  }, [carsList, countries, chosenMaker, labelId]);
 
   return labelId === "model_selector" && !chosenMaker ? null : (
     <div className={classes.select}>

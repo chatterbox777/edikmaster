@@ -7,12 +7,12 @@ import Select from "../../Shared/Select/Select";
 import classes from "./Filter.module.css";
 
 export default function Filter({ carsList, countries }) {
-  const [selectors, setSelectors] = useState([
+  const [selectors] = useState([
     { labelId: "maker_selector", labelText: "Выберите марку авто" },
     { labelId: "model_selector", labelText: "Выберите модель авто" },
     { labelId: "country_selector", labelText: "Выберите страну авто" },
   ]);
-  const [inputs, setInputs] = useState([
+  const [inputs] = useState([
     { id: "year", placeHolder: "год выпуска" },
     { id: "vin", placeHolder: "vin автомобиля" },
   ]);
