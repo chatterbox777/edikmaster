@@ -1,0 +1,5 @@
+./public
+./configs
+./typings
+./.prettierrc.yml
+./lint-staged.config.js
