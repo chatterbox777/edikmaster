@@ -1,4 +1,4 @@
-import { SET_USER } from "../Types/userTypes";
+import { SET_USER } from '../Types/userTypes';
 
 const initialState = {
   user: null,
@@ -13,3 +13,5 @@ export const userReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export type RootState = ReturnType<typeof userReducer>;

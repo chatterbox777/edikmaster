@@ -14,13 +14,13 @@ export default function Input({ placeHolder, name }) {
       return;
     }
 
-    if (e.target.value.length >= 5) {
+    if (e.target.value.length >= 4) {
       clearTimeout(timeOut.current);
-
       timeOut.current = setTimeout(() => {
         dispatch(
           carsActionCreators.setDataOfCar({
-            [name]: e.target.value,
+            name,
+            value: e.target.value,
           }),
         );
 

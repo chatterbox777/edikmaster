@@ -1,11 +1,24 @@
 import classes from './Cars.module.css';
 
-export default function Cars({ dataCars }) {
+interface CarsProps {
+  dataCars: [
+    {
+      id: number;
+      maker: string;
+      model: string;
+      year: number;
+      vin: string;
+      country: string;
+    },
+  ];
+}
+
+export default function Cars({ dataCars }: CarsProps) {
   return (
     <div className={classes.result}>
       {dataCars.length > 0 ? (
         dataCars.map(car => (
-          <li key={car.model}>
+          <li key={car.id}>
             {car.maker} {car.model}{' '}
           </li>
         ))

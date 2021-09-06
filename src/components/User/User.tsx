@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
+import { RootState } from '../../store/Users/userReducer';
 
 export default function User() {
-  const { user } = useSelector(state => state.user);
+  const { user } = useSelector((state: RootState) => state.user);
 
   return (
     <div>

@@ -22,19 +22,19 @@ export const filteredCarsListSelector = createSelector(
   (data, maker, model, country, vin, year) => {
     const searchObj = {};
     if (maker) {
-      searchObj.maker = maker;
+      searchObj['maker'] = maker;
     }
     if (model) {
-      searchObj.model = model;
+      searchObj['model'] = model;
     }
     if (country) {
-      searchObj.country = country;
+      searchObj['country'] = country;
     }
     if (vin) {
-      searchObj.vin = vin;
+      searchObj['vin'] = vin;
     }
     if (year) {
-      searchObj.year = year;
+      searchObj['year'] = year;
     }
     console.log(searchObj);
     if (data) {

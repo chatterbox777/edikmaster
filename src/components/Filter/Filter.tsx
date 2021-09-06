@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import Input from '../../Shared/Input/Input';
 import Select from '../../Shared/Select/Select';
 import classes from './Filter.module.css';
@@ -15,9 +13,22 @@ const selectors = [
   { labelId: 'country_selector', labelText: 'Выберите страну авто' },
 ];
 
-export default function Filter({ carsList, countries }) {
-  // useEffect(() => {}, [carsList, countries]);
+interface FilterProps {
+  carsList: [
+    {
+      brand: string;
+      models: [string];
+    },
+  ];
+  countries: [
+    {
+      name: string;
+      code: string;
+    },
+  ];
+}
 
+export default function Filter({ carsList, countries }: FilterProps) {
   return (
     <div className={classes.filter}>
       {inputs.map(input => (

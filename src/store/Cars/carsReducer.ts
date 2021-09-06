@@ -41,7 +41,9 @@ export const carsReducer = (state = initialState, action) => {
       return { ...state, yearOfCar: action.payload };
     case SET_DATA_OF_CAR: {
       const { name, value } = action.payload;
-
+      if (name === 'yearOfCar') {
+        return { ...state, [name]: +value };
+      }
       return { ...state, [name]: value };
     }
     default:
