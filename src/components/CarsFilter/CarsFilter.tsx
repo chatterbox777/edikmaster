@@ -1,21 +1,12 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  asyncSetCarsListAction,
-  asyncSetCountriesAction,
-  asyncSetDataCarsAction,
-} from "../../store/asyncActions";
-import {
-  carsListSelector,
-  countriesSelector,
-  filteredCarsListSelector,
-} from "../../store/selectors/selectors";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncSetCarsListAction, asyncSetCountriesAction, asyncSetDataCarsAction } from '../../store/asyncActions';
+import { carsListSelector, countriesSelector, filteredCarsListSelector } from '../../store/selectors/selectors';
 
-import classes from "./CarsFilter.module.css";
+import classes from './CarsFilter.module.css';
 
-import Cars from "../Cars/Cars";
-import Filter from "../Filter/Filter";
+import Cars from '../Cars/Cars';
+import Filter from '../Filter/Filter';
 
 export default function CarsFilter() {
   const carsList = useSelector(carsListSelector);
