@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect';
 
+export const isLoadingSelector = state => state.root.isLoading;
 export const dataCarsSelector = state => state.cars.dataCars;
+export const searchIdAviaSelector = state => state.avia.searchId;
+export const ticketsAviaSelector = state => state.avia.tickets.tickets;
 
 export const selectorDataCars = state => state.cars;
 

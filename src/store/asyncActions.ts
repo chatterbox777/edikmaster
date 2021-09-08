@@ -1,25 +1,41 @@
-import {
-  getCarsListForFilter,
-  getCountriesForFilter,
-  getDataCarsForFilter,
-} from "../Api/getCarsListForFilter";
+import { getAllTickets, getSearchId } from './../Api/getTicketsForAvia';
+import { getCarsListForFilter, getCountriesForFilter, getDataCarsForFilter } from '../Api/getCarsListForFilter';
 
-import * as carsActionCreators from "./actionCreators";
+import * as actionCreators from './actionCreators';
 
-export const asyncSetCarsListAction = () => async (dispatch) => {
+export const asyncSetCarsListAction = () => async dispatch => {
   const response = await getCarsListForFilter();
 
-  dispatch(carsActionCreators.setCarsList({ carsList: response }));
+  dispatch(actionCreators.setCarsList({ carsList: response }));
 };
 
-export const asyncSetCountriesAction = () => async (dispatch) => {
+export const asyncSetCountriesAction = () => async dispatch => {
   const response = await getCountriesForFilter();
 
-  dispatch(carsActionCreators.setCountries({ countries: response }));
+  dispatch(actionCreators.setCountries({ countries: response }));
 };
 
-export const asyncSetDataCarsAction = () => async (dispatch) => {
+export const asyncSetDataCarsAction = () => async dispatch => {
   const response = await getDataCarsForFilter();
 
-  dispatch(carsActionCreators.setDataCars({ cars: response }));
+  dispatch(actionCreators.setDataCars({ cars: response }));
+};
+
+export const asyncGetAllTicketsAction =
+  ({ searchId }) =>
+  async dispatch => {
+    try {
+      dispatch(actionCreators.setLoading(true));
+      const response = await getAllTickets({ searchId });
+      await dispatch(actionCreators.getAllTickets({ tickets: response }));
+    } catch (error) {
+      throw new Error(error);
+    } finally {
+      dispatch(actionCreators.setLoading(false));
+    }
+  };
+
+export const asyncGetSearchIdAction = () => async dispatch => {
+  const { searchId } = await getSearchId();
+  dispatch(actionCreators.getSearchId({ searchId }));
 };

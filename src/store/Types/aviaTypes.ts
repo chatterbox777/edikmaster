@@ -1,0 +1,2 @@
+export const SET_ALL_TICKETS = 'AVIA.SET_ALL_TICKETS';
+export const GET_SEARCH_ID = 'AVIA.GET_SEARCH_ID';

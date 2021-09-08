@@ -12,7 +12,9 @@ export default function CarsFilter() {
   const carsList = useSelector(carsListSelector);
   const countries = useSelector(countriesSelector);
   const dataCars = useSelector(filteredCarsListSelector);
+
   const dispatch = useDispatch();
+
   console.log(dataCars);
   useEffect(() => {
     dispatch(asyncSetCarsListAction());

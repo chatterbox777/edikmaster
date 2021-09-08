@@ -20,6 +20,7 @@ const initialState = {
   vinOfCar: null,
   yearOfCar: null,
 };
+/*eslint no-debugger: "warn"*/
 
 export const carsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -40,6 +41,7 @@ export const carsReducer = (state = initialState, action) => {
     case SET_YEAR_OF_CAR:
       return { ...state, yearOfCar: action.payload };
     case SET_DATA_OF_CAR: {
+      debugger;
       const { name, value } = action.payload;
       if (name === 'yearOfCar') {
         return { ...state, [name]: +value };

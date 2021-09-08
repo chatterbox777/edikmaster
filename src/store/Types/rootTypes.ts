@@ -1,0 +1,1 @@
+export const SET_LOADING = 'ROOT.SET_LOADING';

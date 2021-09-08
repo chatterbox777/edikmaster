@@ -8,25 +8,17 @@ export default function Input({ placeHolder, name }) {
   const dispatch = useDispatch();
 
   const timeOut = useRef<ReturnType<typeof setTimeout> | null>(null);
-
+  /*eslint no-debugger: "warn"*/
   function handleInput(e) {
-    if (hasInputFired) {
-      return;
-    }
-
-    if (e.target.value.length >= 4) {
-      clearTimeout(timeOut.current);
-      timeOut.current = setTimeout(() => {
-        dispatch(
-          carsActionCreators.setDataOfCar({
-            name,
-            value: e.target.value,
-          }),
-        );
-
-        setHasInputFired(true);
-      }, 300);
-    }
+    clearTimeout(timeOut.current);
+    timeOut.current = setTimeout(() => {
+      dispatch(
+        carsActionCreators.setDataOfCar({
+          name,
+          value: e.target.value,
+        }),
+      );
+    }, 300);
   }
 
   return (

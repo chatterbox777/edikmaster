@@ -1,3 +1,5 @@
+import { SET_LOADING } from './Types/rootTypes';
+import { SET_ALL_TICKETS, GET_SEARCH_ID } from './Types/aviaTypes';
 import {
   SET_CARS_LIST,
   SET_CHOSEN_COUNTRY,
@@ -59,4 +61,17 @@ export const setYearOfCar = ({ year }) => ({
 export const setDataOfCar = ({ name, value }) => ({
   type: SET_DATA_OF_CAR,
   payload: { name, value },
+});
+
+export const getAllTickets = ({ tickets }) => ({
+  type: SET_ALL_TICKETS,
+  payload: tickets,
+});
+export const getSearchId = ({ searchId }) => ({
+  type: GET_SEARCH_ID,
+  payload: searchId,
+});
+export const setLoading = isLoading => ({
+  type: SET_LOADING,
+  payload: isLoading,
 });
