@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../../../../helpers/formatAviaPrice';
+import TicketInfo from './SubComponents/TicketInfo';
 
 const Ticket = ({ tickets, isLoading }) => {
   if (isLoading) {
@@ -13,8 +14,11 @@ const Ticket = ({ tickets, isLoading }) => {
             <DivTicket key={ticket.carrier + ticket.price}>
               <DivPriceAndLabel>
                 <Price>{formatPrice(ticket.price)}</Price>
-                <div>S7</div>
+                <img src={`https://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
               </DivPriceAndLabel>
+              {ticket.segments.map(segment => (
+                <TicketInfo key={segment.origin + segment.date} />
+              ))}
             </DivTicket>
           ))
         ) : (
@@ -46,7 +50,7 @@ const DivTicket = styled.div`
   width: 502px;
   height: 184px;
   border-radius: 4px;
-  box-shadow: 0px 2px 6px 0px rgb(0 0 0 / 25%);
+  box-shadow: 0px 4px 6px 0px rgb(0 0 0 / 25%);
   margin-top: 20px;
   background-color: white;
 `;
