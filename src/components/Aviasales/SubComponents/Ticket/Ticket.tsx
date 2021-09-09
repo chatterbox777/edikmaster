@@ -13,7 +13,7 @@ const Ticket = ({ tickets, isLoading }) => {
           tickets.map(ticket => (
             <DivTicket key={ticket.carrier + ticket.price}>
               <DivPriceAndLabel>
-                <Price>{formatPrice(ticket.price)}</Price>
+                <Price>{ticket?.price ? formatPrice(ticket.price) : ''}</Price>
                 <img src={`https://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
               </DivPriceAndLabel>
               {ticket.segments.map(segment => (

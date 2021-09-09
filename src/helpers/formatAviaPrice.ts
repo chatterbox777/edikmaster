@@ -1,4 +1,5 @@
 export const formatPrice = price => {
+  debugger;
   let result;
   let newArr = price.toString().split('');
   switch (newArr.length) {

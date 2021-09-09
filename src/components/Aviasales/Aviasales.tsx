@@ -1,20 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Loader from '../../Shared/Loader/Loader';
 import { asyncGetAllTicketsAction, asyncGetSearchIdAction } from '../../store/asyncActions';
-import { isLoadingSelector, searchIdAviaSelector, ticketsAviaSelector } from '../../store/selectors/selectors';
+import {
+  isLoadingSelector,
+  searchIdAviaSelector,
+  stopRequestValueAviaSelector,
+  ticketsAviaSelector,
+} from '../../store/selectors/selectors';
 import AviaLogo from '../../ui/images/logo.svg';
 import AviaFilter from './SubComponents/AviaFilter/AviaFilter';
 import Tabulation from './SubComponents/Tabulation/Tabulation';
 import Ticket from './SubComponents/Ticket/Ticket';
 
 const Aviasales = () => {
+  const [lastTicketId, setLastTicketId] = useState(4);
+  const [ticketsToShow, setTicketsToShow] = useState([]);
+
   const searchId = useSelector(searchIdAviaSelector);
   const tickets = useSelector(ticketsAviaSelector);
   const isLoading = useSelector(isLoadingSelector);
-
-  console.log(searchId);
+  const isRequestStopped = useSelector(stopRequestValueAviaSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,11 +29,22 @@ const Aviasales = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!searchId) {
+    if (!searchId || isRequestStopped) {
       return;
     }
     dispatch(asyncGetAllTicketsAction({ searchId }));
-  }, [dispatch, searchId]);
+  }, [dispatch, searchId, tickets]);
+
+  useEffect(() => {
+    const newArr = [...tickets];
+    const result = newArr.filter((_, id) => id >= 0 && id <= lastTicketId);
+
+    setTicketsToShow(result);
+  }, [isRequestStopped, lastTicketId]);
+
+  const handleShowFiveMoreTickets = () => {
+    setLastTicketId(prev => prev + 5);
+  };
 
   return (
     <Main>
@@ -38,7 +56,10 @@ const Aviasales = () => {
         <DivFlexColumn>
           <Tabulation />
           <Loader isLoading={isLoading} />
-          <Ticket isLoading={isLoading} tickets={tickets} />
+          <Ticket isLoading={isLoading} tickets={ticketsToShow} />
+          {ticketsToShow.length > 0 && (
+            <ButtonLoadMoreTickets onClick={handleShowFiveMoreTickets}>Показать еще 5 билетов!</ButtonLoadMoreTickets>
+          )}
         </DivFlexColumn>
       </MainRow>
     </Main>
@@ -66,4 +87,25 @@ const AviaLogoImg = styled.img`
 `;
 const Main = styled.div`
   background-color: #f3f7fa;
+`;
+const ButtonLoadMoreTickets = styled.button`
+  width: 502px;
+  height: 50px;
+  margin-top: 20px;
+  background-color: #2196f3;
+  color: white;
+  border-radius: 4px;
+  border: 0;
+
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-transform: uppercase;
+  &:hover {
+    cursor: pointer;
+  }
 `;

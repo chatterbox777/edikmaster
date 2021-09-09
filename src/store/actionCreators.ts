@@ -1,5 +1,5 @@
 import { SET_LOADING } from './Types/rootTypes';
-import { SET_ALL_TICKETS, GET_SEARCH_ID } from './Types/aviaTypes';
+import { SET_ALL_TICKETS, GET_SEARCH_ID, SET_STOP_REQUEST } from './Types/aviaTypes';
 import {
   SET_CARS_LIST,
   SET_CHOSEN_COUNTRY,
@@ -75,3 +75,4 @@ export const setLoading = isLoading => ({
   type: SET_LOADING,
   payload: isLoading,
 });
+export const setStopRequest = ({ stopRequestValue }) => ({ type: SET_STOP_REQUEST, payload: stopRequestValue });

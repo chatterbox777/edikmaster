@@ -5,6 +5,9 @@ export const getAllTickets = async ({ searchId }) => {
       searchId,
     },
   });
+  if (!response) {
+    return [];
+  }
   return response.data;
 };
 export const getSearchId = async () => {

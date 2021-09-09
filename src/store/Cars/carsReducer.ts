@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import {
   SET_CHOSEN_MAKER,
   SET_CARS_LIST,
@@ -41,7 +42,6 @@ export const carsReducer = (state = initialState, action) => {
     case SET_YEAR_OF_CAR:
       return { ...state, yearOfCar: action.payload };
     case SET_DATA_OF_CAR: {
-      debugger;
       const { name, value } = action.payload;
       if (name === 'yearOfCar') {
         return { ...state, [name]: +value };

@@ -3,7 +3,8 @@ import { createSelector } from 'reselect';
 export const isLoadingSelector = state => state.root.isLoading;
 export const dataCarsSelector = state => state.cars.dataCars;
 export const searchIdAviaSelector = state => state.avia.searchId;
-export const ticketsAviaSelector = state => state.avia.tickets.tickets;
+export const ticketsAviaSelector = state => state.avia.tickets;
+export const stopRequestValueAviaSelector = state => state.avia.stopRequest;
 
 export const selectorDataCars = state => state.cars;
 
@@ -14,6 +15,10 @@ export const chosenModelSelector = state => state.cars.chosenModel;
 export const chosenCountrySelector = state => state.cars.chosenCountry;
 export const vinOfCarSelector = state => state.cars.vinOfCar;
 export const yearOfCarSelector = state => state.cars.yearOfCar;
+
+// export const FilteredTicketsSelector = createSelector(ticketsAviaSelector, (tickets) => {
+
+// });
 
 export const filteredCarsListSelector = createSelector(
   dataCarsSelector,
@@ -39,7 +44,6 @@ export const filteredCarsListSelector = createSelector(
     if (year) {
       searchObj['year'] = year;
     }
-    console.log(searchObj);
     if (data) {
       let result;
       return data.filter(carObj => {
