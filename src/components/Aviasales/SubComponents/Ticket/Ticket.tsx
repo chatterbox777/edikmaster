@@ -17,7 +17,7 @@ const Ticket = ({ tickets, isLoading }) => {
                 <img src={`https://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
               </DivPriceAndLabel>
               {ticket.segments.map(segment => (
-                <TicketInfo key={segment.origin + segment.date} />
+                <TicketInfo key={segment.origin + segment.date} info={segment} />
               ))}
             </DivTicket>
           ))
