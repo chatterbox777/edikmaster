@@ -26,7 +26,7 @@ const Aviasales = () => {
 
   useEffect(() => {
     dispatch(asyncGetSearchIdAction());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (!searchId || isRequestStopped) {

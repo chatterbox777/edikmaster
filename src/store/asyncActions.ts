@@ -28,9 +28,8 @@ export const asyncGetAllTicketsAction =
       dispatch(actionCreators.setLoading(true));
       const response = await getAllTickets({ searchId });
       await dispatch(actionCreators.getAllTickets({ tickets: response.tickets }));
-      await dispatch(actionCreators.setStopRequest({ stopRequestValue: response.stop }));
     } catch (error) {
-      console.error(new Error(error.message));
+      console.log(error);
     } finally {
       dispatch(actionCreators.setLoading(false));
     }

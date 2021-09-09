@@ -1,5 +1,4 @@
 export const getCommaAndValue = (stop, stops, i) => {
-  debugger;
   if (stops.length > 0 && stops.length - 1 === i) {
     return stop;
   }
