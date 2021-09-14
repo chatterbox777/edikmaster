@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import Loader from '../../Shared/Loader/Loader';
 import { asyncGetAllTicketsAction, asyncGetSearchIdAction } from '../../store/asyncActions';
 import {
+  filteredTicketsSelector,
   isLoadingSelector,
+  isTicketFilterSettedSelector,
   searchIdAviaSelector,
   stopRequestValueAviaSelector,
   ticketsAviaSelector,
@@ -23,6 +25,8 @@ const Aviasales = () => {
   const isLoading = useSelector(isLoadingSelector);
   const isRequestStopped = useSelector(stopRequestValueAviaSelector);
   const dispatch = useDispatch();
+  const filteredTickets = useSelector(filteredTicketsSelector);
+  const isFilterSetted = useSelector(isTicketFilterSettedSelector);
 
   useEffect(() => {
     dispatch(asyncGetSearchIdAction());
@@ -36,11 +40,18 @@ const Aviasales = () => {
   }, [dispatch, searchId, tickets]);
 
   useEffect(() => {
-    const newArr = [...tickets];
+    let newArr;
+    if (filteredTickets && filteredTickets.length > 0 && isFilterSetted) {
+      console.log(filteredTickets);
+
+      newArr = [...filteredTickets];
+    } else {
+      newArr = [...tickets];
+    }
     const result = newArr.filter((_, id) => id >= 0 && id <= lastTicketId);
 
     setTicketsToShow(result);
-  }, [isRequestStopped, lastTicketId]);
+  }, [isRequestStopped, lastTicketId, filteredTickets]);
 
   const handleShowFiveMoreTickets = () => {
     setLastTicketId(prev => prev + 5);

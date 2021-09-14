@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../../../../helpers/formatAviaPrice';
 import TicketInfo from './SubComponents/TicketInfo';
 
 const Ticket = ({ tickets, isLoading }) => {
+  useEffect(() => {
+    console.log('rerender');
+  });
+
   if (isLoading) {
     return null;
   } else {

@@ -1,5 +1,11 @@
 import { SET_LOADING } from './Types/rootTypes';
-import { SET_ALL_TICKETS, GET_SEARCH_ID, SET_STOP_REQUEST } from './Types/aviaTypes';
+import {
+  SET_ALL_TICKETS,
+  GET_SEARCH_ID,
+  SET_STOP_REQUEST,
+  SET_FILTERED_TICKETS,
+  SET_FILTER_FOR_TICKETS,
+} from './Types/aviaTypes';
 import {
   SET_CARS_LIST,
   SET_CHOSEN_COUNTRY,
@@ -76,3 +82,12 @@ export const setLoading = isLoading => ({
   payload: isLoading,
 });
 export const setStopRequest = ({ stopRequestValue }) => ({ type: SET_STOP_REQUEST, payload: stopRequestValue });
+
+export const setFilteredTicketsActionCreator = tickets => ({
+  type: SET_FILTERED_TICKETS,
+  payload: tickets,
+});
+export const setFilterForTicketsActionCreator = ({ tabs = [], transfers = [] }) => ({
+  type: SET_FILTER_FOR_TICKETS,
+  payload: { tabs, transfers },
+});

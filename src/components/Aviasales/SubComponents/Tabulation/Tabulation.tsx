@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { setFilterForTicketsActionCreator } from '../../../../store/actionCreators';
 
 const Tabulation = () => {
+  const dispatch = useDispatch();
   const [buttonsData, setButtonsData] = useState([
     { id: 'cheap', name: 'Самый дешевый', position: 'left', active: true },
     { id: 'fast', name: 'Самый быстрый', position: 'middle', active: false },
@@ -16,6 +19,7 @@ const Tabulation = () => {
         return { ...btn, active: false };
       }),
     );
+    dispatch(setFilterForTicketsActionCreator({ tabs: buttonsData }));
   };
   return (
     <DivFlexRow>

@@ -5,6 +5,9 @@ export const dataCarsSelector = state => state.cars.dataCars;
 export const searchIdAviaSelector = state => state.avia.searchId;
 export const ticketsAviaSelector = state => state.avia.tickets;
 export const stopRequestValueAviaSelector = state => state.avia.stopRequest;
+export const filterAviaSelector = state => state.avia.filter;
+export const filteredTicketsSelector = state => state.avia.filteredTickets;
+export const isTicketFilterSettedSelector = state => state.avia.isFilterSetted;
 
 export const selectorDataCars = state => state.cars;
 
