@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import {
   SET_ALL_TICKETS,
   GET_SEARCH_ID,
@@ -26,14 +27,18 @@ export const aviaReducer = (state = initialState, action) => {
 
     case SET_FILTERED_TICKETS: {
       const filterTransfers = state.filter?.transfers ?? null;
+
+      const filterTab = state.filter?.tabs;
+
       const tickets = action.payload;
 
       let resultTickets = [];
+      debugger;
 
       if (filterTransfers) {
         filterTransfers.forEach(value => {
           if (value === 'all') {
-            resultTickets = tickets;
+            return;
           } else {
             let filteredTicketsByValue = tickets.filter(ticket => {
               return ticket.segments[0].stops.length === value;
@@ -42,15 +47,35 @@ export const aviaReducer = (state = initialState, action) => {
           }
         });
       }
-
+      if (filterTab) {
+        let filteredTickets = [];
+        let ticketsOrResultTickets = resultTickets.length > 0 ? resultTickets : tickets;
+        switch (filterTab) {
+          case 'cheap':
+            filteredTickets = [...ticketsOrResultTickets].sort((a, b) => {
+              return a.price - b.price;
+            });
+            break;
+          case 'fast':
+            filteredTickets = [...ticketsOrResultTickets].sort((a, b) => {
+              return a.segments[0].duration - b.segments[0].duration;
+            });
+            break;
+          case 'optimal':
+            break;
+          default:
+            break;
+        }
+        resultTickets = [...filteredTickets];
+      }
       return { ...state, filteredTickets: resultTickets, isTicketsFiltered: true };
     }
     case SET_FILTER_FOR_TICKETS: {
-      const { tabs = [], transfers = [] } = action.payload;
+      const { tabs = null, transfers = [] } = action.payload;
       return {
         ...state,
         filter: { tabs, transfers },
-        isFilterSetted: tabs.length > 0 || transfers.length > 0 ? true : false,
+        isFilterSetted: tabs || transfers.length > 0 ? true : false,
       };
     }
     default:

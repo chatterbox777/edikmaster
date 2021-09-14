@@ -87,7 +87,7 @@ export const setFilteredTicketsActionCreator = tickets => ({
   type: SET_FILTERED_TICKETS,
   payload: tickets,
 });
-export const setFilterForTicketsActionCreator = ({ tabs = [], transfers = [] }) => ({
+export const setFilterForTicketsActionCreator = ({ tabs = null, transfers = [] }) => ({
   type: SET_FILTER_FOR_TICKETS,
   payload: { tabs, transfers },
 });

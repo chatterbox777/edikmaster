@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { setFilterForTicketsActionCreator } from '../../../../store/actionCreators';
+import { setFilteredTicketsActionCreator, setFilterForTicketsActionCreator } from '../../../../store/actionCreators';
+import { filterAviaSelector, ticketsAviaSelector } from '../../../../store/selectors/selectors';
 
 const Tabulation = () => {
+  const filter = useSelector(filterAviaSelector);
+  const tickets = useSelector(ticketsAviaSelector);
+
   const dispatch = useDispatch();
   const [buttonsData, setButtonsData] = useState([
     { id: 'cheap', name: 'Самый дешевый', position: 'left', active: true },
@@ -19,8 +23,19 @@ const Tabulation = () => {
         return { ...btn, active: false };
       }),
     );
-    dispatch(setFilterForTicketsActionCreator({ tabs: buttonsData }));
   };
+
+  useEffect(() => {
+    dispatch(
+      setFilterForTicketsActionCreator({
+        tabs: buttonsData.find(btn => btn.active).id,
+        transfers: filter?.transfers ?? [],
+      }),
+    );
+  }, [buttonsData]);
+  useEffect(() => {
+    dispatch(setFilteredTicketsActionCreator(tickets));
+  }, [filter]);
   return (
     <DivFlexRow>
       {buttonsData.map(btn => (

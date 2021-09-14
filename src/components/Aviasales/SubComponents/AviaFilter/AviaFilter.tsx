@@ -3,15 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Checkbox from '../../../../Shared/Checkbox/Checkbox';
 import { setFilteredTicketsActionCreator, setFilterForTicketsActionCreator } from '../../../../store/actionCreators';
-import {
-  filterAviaSelector,
-  isTicketFilterSettedSelector,
-  ticketsAviaSelector,
-} from '../../../../store/selectors/selectors';
+import { filterAviaSelector, ticketsAviaSelector } from '../../../../store/selectors/selectors';
 
 const AviaFilter = () => {
   const dispatch = useDispatch();
-  const isFilterSetted = useSelector(isTicketFilterSettedSelector);
   const filter = useSelector(filterAviaSelector);
 
   const tickets = useSelector(ticketsAviaSelector);
@@ -44,6 +39,7 @@ const AviaFilter = () => {
     dispatch(
       setFilterForTicketsActionCreator({
         transfers: filteredCheckboxes.map(el => (el.id !== 'all' ? +el.id : el.id)),
+        tabs: filter?.tabs,
       }),
     );
   };
