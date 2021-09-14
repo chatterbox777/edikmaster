@@ -25,7 +25,19 @@ const AviaFilter = () => {
   ]);
 
   const handleCheckbox = id => {
-    const newCheckboxesArr = checkboxes.map(el => (el.id === id ? { ...el, checkboxValue: !el.checkboxValue } : el));
+    let newCheckboxesArr;
+    if (id === 'all') {
+      newCheckboxesArr = checkboxes.map(el => {
+        if (el.id === id && el.checkboxValue) {
+          return { ...el, checkboxValue: false };
+        } else {
+          return { ...el, checkboxValue: true };
+        }
+      });
+    } else {
+      newCheckboxesArr = checkboxes.map(el => (el.id === id ? { ...el, checkboxValue: !el.checkboxValue } : el));
+    }
+
     const filteredCheckboxes = newCheckboxesArr.filter(checkbox => checkbox.checkboxValue);
 
     setCheckboxes(newCheckboxesArr);

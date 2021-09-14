@@ -32,11 +32,14 @@ export const aviaReducer = (state = initialState, action) => {
 
       if (filterTransfers) {
         filterTransfers.forEach(value => {
-          // TODO: handle all value;
-          let filteredTicketsByValue = tickets.filter(ticket => {
-            return ticket.segments[0].stops.length === value;
-          });
-          resultTickets = [...resultTickets, ...filteredTicketsByValue];
+          if (value === 'all') {
+            resultTickets = tickets;
+          } else {
+            let filteredTicketsByValue = tickets.filter(ticket => {
+              return ticket.segments[0].stops.length === value;
+            });
+            resultTickets = [...resultTickets, ...filteredTicketsByValue];
+          }
         });
       }
 
