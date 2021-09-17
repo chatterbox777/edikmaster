@@ -33,7 +33,6 @@ export const aviaReducer = (state = initialState, action) => {
       const tickets = action.payload;
 
       let resultTickets = [];
-      debugger;
 
       if (filterTransfers) {
         filterTransfers.forEach(value => {
@@ -71,6 +70,7 @@ export const aviaReducer = (state = initialState, action) => {
       return { ...state, filteredTickets: resultTickets, isTicketsFiltered: true };
     }
     case SET_FILTER_FOR_TICKETS: {
+      debugger;
       const { tabs = null, transfers = [] } = action.payload;
       return {
         ...state,

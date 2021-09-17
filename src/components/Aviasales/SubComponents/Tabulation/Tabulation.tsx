@@ -10,7 +10,7 @@ const Tabulation = () => {
 
   const dispatch = useDispatch();
   const [buttonsData, setButtonsData] = useState([
-    { id: 'cheap', name: 'Самый дешевый', position: 'left', active: true },
+    { id: 'cheap', name: 'Самый дешевый', position: 'left', active: false },
     { id: 'fast', name: 'Самый быстрый', position: 'middle', active: false },
     { id: 'optimal', name: 'Оптимальный', position: 'right', active: false },
   ]);
@@ -28,14 +28,16 @@ const Tabulation = () => {
   useEffect(() => {
     dispatch(
       setFilterForTicketsActionCreator({
-        tabs: buttonsData.find(btn => btn.active).id,
+        tabs: buttonsData.find(btn => btn.active)?.id,
         transfers: filter?.transfers ?? [],
       }),
     );
   }, [buttonsData]);
+
   useEffect(() => {
     dispatch(setFilteredTicketsActionCreator(tickets));
   }, [filter]);
+
   return (
     <DivFlexRow>
       {buttonsData.map(btn => (
