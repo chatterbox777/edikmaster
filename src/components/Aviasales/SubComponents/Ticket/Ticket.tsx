@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
+
 import styled from 'styled-components';
-import { formatPrice } from '../../../../helpers/formatAviaPrice';
 import TicketInfo from './SubComponents/TicketInfo';
 
-const Ticket = ({ tickets, isLoading }) => {
-  useEffect(() => {
-    console.log('rerender');
-  });
+import { formatPrice } from '../../../../helpers/formatAviaPrice';
 
+const Ticket = ({ tickets, isLoading }) => {
   if (isLoading) {
     return null;
   } else {

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import styled from 'styled-components';
 import Checkbox from '../../../../Shared/Checkbox/Checkbox';
+
 import { setFilteredTicketsActionCreator, setFilterForTicketsActionCreator } from '../../../../store/actionCreators';
 import { filterAviaSelector, ticketsAviaSelector } from '../../../../store/selectors/selectors';
 
 const AviaFilter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(filterAviaSelector);
-
   const tickets = useSelector(ticketsAviaSelector);
 
   const [checkboxes, setCheckboxes] = useState([
@@ -21,6 +22,7 @@ const AviaFilter = () => {
 
   const handleCheckbox = id => {
     let newCheckboxesArr;
+
     if (id === 'all') {
       newCheckboxesArr = checkboxes.map(el => {
         if (el.id === id && el.checkboxValue) {
@@ -36,6 +38,7 @@ const AviaFilter = () => {
     const filteredCheckboxes = newCheckboxesArr.filter(checkbox => checkbox.checkboxValue);
 
     setCheckboxes(newCheckboxesArr);
+
     dispatch(
       setFilterForTicketsActionCreator({
         transfers: filteredCheckboxes.map(el => (el.id !== 'all' ? +el.id : el.id)),
@@ -43,9 +46,11 @@ const AviaFilter = () => {
       }),
     );
   };
+
   useEffect(() => {
     dispatch(setFilteredTicketsActionCreator(tickets));
   }, [filter]);
+
   return (
     <FilterMain>
       <Span>Количество пересадок</Span>

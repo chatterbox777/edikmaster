@@ -42,8 +42,6 @@ const Aviasales = () => {
   useEffect(() => {
     let newArr;
     if (filteredTickets && filteredTickets.length > 0 && isFilterSetted) {
-      console.log(filteredTickets);
-
       newArr = [...filteredTickets];
     } else {
       newArr = [...tickets];
